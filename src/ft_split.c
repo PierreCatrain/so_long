@@ -6,7 +6,7 @@
 /*   By: picatrai <picatrai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:27:39 by picatrai          #+#    #+#             */
-/*   Updated: 2023/11/29 11:35:39 by picatrai         ###   ########.fr       */
+/*   Updated: 2023/12/29 14:46:19 by picatrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int	ft_mega_malloc(char *str, char c)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] != '\0' && str[i] != c && (str[i + 1] == '\0' || str[i + 1] == c))
+		if (str[i] != '\0' && str[i] != c \
+		&& (str[i + 1] == '\0' || str[i + 1] == c))
 			count++;
 		i++;
 	}
@@ -70,28 +71,28 @@ char	*ft_remplissage(char *str, char c, int i)
 char	**ft_split(char *str, char c)
 {
 	char	**split;
-	int		i;
-	int		j;
+	int		index[2];
 	int		new;
 
 	split = malloc((ft_mega_malloc(str, c) + 1) * sizeof(char *));
 	if (split == NULL)
 		return (NULL);
-	i = -1;
-	j = -1;
+	index[0] = -1;
+	index[1] = -1;
 	new = 1;
-	while (str[++i])
+	while (str[++index[0]])
 	{
-		if (new == 1 && str[i] != c)
+		if (new == 1 && str[index[0]] != c)
 		{
-			split[++j] = ft_remplissage(str, c, i);
-			if (split[j] == NULL)
-				return (ft_free_split(split, j), NULL);
+			split[++index[1]] = ft_remplissage(str, c, index[0]);
+			if (split[index[1]] == NULL)
+				return (ft_free_split(split, index[1]), NULL);
 			new = 0;
 		}
-		else if (new == 0 && str[i] == c && str[i + 1] != c && str[i + 1] != '\0')
+		else if (new == 0 && str[index[0]] == c \
+		&& str[index[0] + 1] != c && str[index[0] + 1] != '\0')
 			new = 1;
 	}
-	split[++j] = 0;
+	split[++index[1]] = 0;
 	return (split);
 }

@@ -6,7 +6,7 @@
 /*   By: picatrai <picatrai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:54:17 by picatrai          #+#    #+#             */
-/*   Updated: 2023/12/30 13:02:11 by picatrai         ###   ########.fr       */
+/*   Updated: 2023/12/30 16:18:08 by picatrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,35 +62,10 @@ void	ft_game(t_data data)
 	ft_free_and_destroy(data);
 }
 
-int	check_ber(int argc, char **argv)
+int	ft_game_avant(t_data *data, char *buffer, int size)
 {
-	int	i;
-
-	if (argc != 2)
-		return (0);
-	i = 0;
-	while (argv[1][i])
-		i++;
-	if (i < 4)
-		return (0);
-	if (argv[1][i - 4] != '.' || argv[1][i - 3] != 'b' \
-	|| argv[1][i - 2] != 'e' || argv[1][i - 1] != 'r')
-		return (0);
-	return (1);
-}
-
-int	main(int argc, char **argv)
-{
-	t_data	data;
 	char	**parse;
-	char	*buffer;
-	size_t	size;
 
-	if (check_ber(argc, argv) == 0)
-		return (ft_putstr_error("Error\nil faut un fichier .ber\n"), 0);
-	buffer = malloc((8096 + 1) * sizeof(char));
-	size = read(open(argv[1], O_RDONLY), buffer, 8096);
-	buffer[size] = '\0';
 	if (ft_strlen(buffer) == 8096)
 		return (free(buffer), ft_putstr_error("Error\nla map trop grande\n"), 0);
 	if (size <= 0)
@@ -102,7 +77,33 @@ int	main(int argc, char **argv)
 		return (free(buffer), 0);
 	free(buffer);
 	if (map_valide(parse) == 0)
+		return (ft_free_2d(parse), 0);
+	data->map = add_border(parse);
+	return (1);
+}
+
+int	main(int argc, char **argv)
+{
+	t_data	data;
+	char	*buffer;
+	int		size;
+	int		fd;
+
+	data.map = NULL;
+	fd = 0;
+	if (check_ber(argc, argv) == 0)
+		return (ft_putstr_error("Error\nil faut un fichier .ber\n"), 0);
+	buffer = malloc((8096 + 1) * sizeof(char));
+	if (buffer == NULL)
 		return (0);
-	data.map = add_border(parse);
+	fd = open(argv[1], O_RDONLY);
+	if (fd < 0)
+		return (free(buffer), 0);
+	size = read(fd, buffer, 8096);
+	buffer[size] = '\0';
+	close(fd);
+	if (ft_game_avant(&data, buffer, size) == 0)
+		return (0);
 	ft_game(data);
+	return (0);
 }

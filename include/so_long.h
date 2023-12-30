@@ -6,7 +6,7 @@
 /*   By: picatrai <picatrai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 16:34:16 by picatrai          #+#    #+#             */
-/*   Updated: 2023/12/30 12:58:35 by picatrai         ###   ########.fr       */
+/*   Updated: 2023/12/30 16:16:29 by picatrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,5 +116,6 @@ int				handle_keypress(int keysym, t_data *data);
 int				render(t_data *data);
 int				ft_free_and_destroy(t_data data);
 int				ft_free_and_destroy_2(t_data *data);
+int				check_ber(int argc, char **argv);
 
 #endif

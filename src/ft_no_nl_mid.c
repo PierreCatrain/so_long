@@ -6,7 +6,7 @@
 /*   By: picatrai <picatrai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 15:03:27 by picatrai          #+#    #+#             */
-/*   Updated: 2023/12/29 15:33:34 by picatrai         ###   ########.fr       */
+/*   Updated: 2023/12/30 16:16:12 by picatrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,22 @@ int	check_no_nl_mid(char *buffer)
 			return (0);
 		debut++;
 	}
+	return (1);
+}
+
+int	check_ber(int argc, char **argv)
+{
+	int	i;
+
+	if (argc != 2)
+		return (0);
+	i = 0;
+	while (argv[1][i])
+		i++;
+	if (i < 4)
+		return (0);
+	if (argv[1][i - 4] != '.' || argv[1][i - 3] != 'b' \
+	|| argv[1][i - 2] != 'e' || argv[1][i - 1] != 'r')
+		return (0);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: picatrai <picatrai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:55:16 by picatrai          #+#    #+#             */
-/*   Updated: 2023/12/29 11:17:00 by picatrai         ###   ########.fr       */
+/*   Updated: 2023/12/30 13:01:35 by picatrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	ft_putnbr_steps(t_data data)
 	int	pixel;
 
 	pixel = 585;
+	ft_putnbr_fd(data.count_step, 1);
+	ft_putchar_fd('\n', 1);
 	size = ft_nbr_len(data.count_step);
 	while (size < 5)
 	{

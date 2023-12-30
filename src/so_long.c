@@ -6,7 +6,7 @@
 /*   By: picatrai <picatrai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:54:17 by picatrai          #+#    #+#             */
-/*   Updated: 2023/12/29 15:31:24 by picatrai         ###   ########.fr       */
+/*   Updated: 2023/12/30 13:02:11 by picatrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	ft_game(t_data data)
 		return ;
 	ft_game_suite(data);
 	mlx_loop_hook(data.mlx_ptr, &render, &data);
+	mlx_hook(data.win_ptr, 17, 0, ft_free_and_destroy_2, &data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &data);
 	mlx_loop(data.mlx_ptr);
 	ft_free_and_destroy(data);

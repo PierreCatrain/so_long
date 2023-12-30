@@ -6,7 +6,7 @@
 /*   By: picatrai <picatrai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 16:34:16 by picatrai          #+#    #+#             */
-/*   Updated: 2023/12/29 16:12:06 by picatrai         ###   ########.fr       */
+/*   Updated: 2023/12/30 12:58:35 by picatrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,9 @@ void			ft_lstadd_back(t_coordonees **lst, t_coordonees *new);
 void			ft_path_1(t_data data);
 void			ft_path_2(t_data data);
 void			ft_free_map(t_data data);
-void			ft_free_and_destroy(t_data data);
 void			ft_free_2d(char **str);
+void			ft_putnbr_fd(int n, int fd);
+void			ft_putchar_fd(char c, int fd);
 
 int				check_no_nl_mid(char *buffer);
 int				map_valide(char **map);
@@ -113,5 +114,7 @@ int				check_path(char **map);
 int				ft_is_new(t_coordonees *case_possible, int i, int j);
 int				handle_keypress(int keysym, t_data *data);
 int				render(t_data *data);
+int				ft_free_and_destroy(t_data data);
+int				ft_free_and_destroy_2(t_data *data);
 
 #endif
